@@ -7,7 +7,7 @@ const Navbar = () => {
     const activeStyle = 'underline underline-offset-4 font-bold '
 
     return (
-        <nav className=" w-screen flex justify-between items-center py-4 px-10 fixed z-10 top-0 font-light text-sm ">
+        <nav className=" w-screen flex justify-between items-center py-4 px-10 fixed z-10 top-0 font-light text-sm  bg-white/60 backdrop-blur border-white-30 shadow-md">
             <ul className="flex items-center gap-4 ">
                 <li className="font-black text-3xl mr-4 ">
                     <NavLink to='/'>
