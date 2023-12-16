@@ -1,10 +1,15 @@
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { ShoppingCartContext } from "../../Context"
+import { ShoppingCartIcon } from "@heroicons/react/24/solid"
 
 { NavLink}
 
 
 const Navbar = () => {
     const activeStyle = 'underline underline-offset-4 font-bold '
+
+    const { count } = useContext(ShoppingCartContext);
 
     return (
         <nav className=" w-screen flex justify-between items-center py-4 px-10 fixed z-10 top-0 font-light text-sm  bg-white/60 backdrop-blur border-white-30 shadow-md">
@@ -100,15 +105,18 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li>
+                <li className= "h-10 w-10 bg-stone-950/80 backdrop-blur border-white-30 shadow-md rounded-full text-amber-50 flex items-center justify-center font-bold">
                     <NavLink
                         to='/cart'
                         className ={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
-                        🛒 0
+                        { count != 0 && count }
                     </NavLink>
+                    <div>
+                        <ShoppingCartIcon className= {count == 0 ? 'h-4 w-4 text-white-500' :'hidden'} />
+                    </div>
                 </li>
 
             </ul>

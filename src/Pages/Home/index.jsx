@@ -1,17 +1,18 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import Card from "../../Components/Card"
 import Layout from "../../Components/Layout"
 import CardLoading from "../../Components/CardLoading"
 import { ShoppingCartContext } from '../../Context'
+import ProductDetail from '../../Components/ProductDetail'
 
 
 function Home() {
 
-   const { items, isLoading } = useContext(ShoppingCartContext)
+   const { items, isLoading } = useContext(ShoppingCartContext);
 
    return (
        <Layout>
-         <div className='flex gap-x-4 gap-y-8 flex-wrap justify-center items-center w-full max-w-screen-xl'>
+         <div className='flex gap-x-4 gap-y-8 flex-wrap justify-center items-center w-full max-w-screen-xl mt-16'>
             {
                isLoading ?
                <>
@@ -40,6 +41,7 @@ function Home() {
                )
             }
           </div>
+          <ProductDetail />
        </Layout>
    )
 }
