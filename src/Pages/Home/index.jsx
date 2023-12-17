@@ -8,7 +8,7 @@ import ProductDetail from '../../Components/ProductDetail'
 
 function Home() {
 
-   const { items, isLoading } = useContext(ShoppingCartContext);
+   const { items, isLoading, isDetailOpen } = useContext(ShoppingCartContext);
 
    return (
        <Layout>
@@ -31,7 +31,8 @@ function Home() {
                </>
                : items?.map( item => {
                   return <Card
-                     key={item.id}
+                     key = {item.id}
+                     id = {item.id}
                      img = {item.image}
                      title = {item.title}
                      price = {item.price}
@@ -40,8 +41,9 @@ function Home() {
                   }
                )
             }
-          </div>
-          <ProductDetail />
+         </div>
+
+         {isDetailOpen && <ProductDetail />}
        </Layout>
    )
 }
