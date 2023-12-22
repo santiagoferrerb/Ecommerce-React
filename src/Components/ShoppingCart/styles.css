@@ -1,0 +1,9 @@
+.shopping-cart{
+    box-sizing: border-box;
+    width: 360px;
+    height: calc(100vh - 63px);
+}
+
+.cart-card{
+    height: calc(100vh - (63px + 250px ));
+}

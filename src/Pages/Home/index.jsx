@@ -4,11 +4,12 @@ import Layout from "../../Components/Layout"
 import CardLoading from "../../Components/CardLoading"
 import { ShoppingCartContext } from '../../Context'
 import ProductDetail from '../../Components/ProductDetail'
+import ShoppingCart from '../../Components/ShoppingCart'
 
 
 function Home() {
 
-   const { items, isLoading, isDetailOpen } = useContext(ShoppingCartContext);
+   const { items, isLoading, isDetailOpen, isCartOpen } = useContext(ShoppingCartContext);
 
    return (
        <Layout>
@@ -44,6 +45,7 @@ function Home() {
          </div>
 
          {isDetailOpen && <ProductDetail />}
+         {isCartOpen && <ShoppingCart />}
        </Layout>
    )
 }
