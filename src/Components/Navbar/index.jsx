@@ -9,19 +9,23 @@ import { ShoppingCartIcon } from "@heroicons/react/24/solid"
 const Navbar = () => {
     const activeStyle = 'underline underline-offset-4 font-bold '
 
-    const { count } = useContext(ShoppingCartContext);
+    const { count, setSearchByCategory, setisCartOpen, setisDetailOpen,isCartOpen } = useContext(ShoppingCartContext);
 
     return (
         <nav className=" w-screen flex justify-between items-center py-4 px-10 fixed z-10 top-0 font-light text-sm  bg-white/60 backdrop-blur border-white-30 shadow-md">
             <ul className="flex items-center gap-4 ">
                 <li className="font-black text-3xl mr-4 ">
-                    <NavLink to='/'>
+                    <NavLink
+                        to='/'
+                        onClick={() => setSearchByCategory("")}
+                        >
                         VUUR
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to='/'
+                        onClick={() => setSearchByCategory("")}
                         className ={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
@@ -31,42 +35,36 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/clothes'
+                        to='/men'
+                        onClick={() => setSearchByCategory("men's clothing")}
                         className ={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
-                        Clothes
+                        Men
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        to='/jewelery'
+                        onClick={() => setSearchByCategory("jewelery")}
+                        className ={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                        }
+                    >
+                        Jewelery
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to='/electronics'
+                        onClick={() => setSearchByCategory("electronics")}
+
                         className ={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
                         Electronics
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/furnitures'
-                        className ={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        Furnitures
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/toys'
-                        className ={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        Toys
                     </NavLink>
                 </li>
             </ul>
@@ -105,7 +103,13 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className= "h-10 w-10 bg-stone-950/80 backdrop-blur border-white-30 shadow-md rounded-full text-amber-50 flex items-center justify-center font-bold">
+                <li
+                    className= "h-10 w-10 bg-stone-950/80 backdrop-blur border-white-30 shadow-md rounded-full text-amber-50 flex items-center justify-center font-bold select-none cursor-pointer"
+                    onClick={() => {
+                        setisCartOpen(!isCartOpen);
+                        setisDetailOpen(false);
+                    }}
+                >
                     <NavLink
                         to='/cart'
                         className ={({ isActive }) =>
@@ -114,8 +118,10 @@ const Navbar = () => {
                     >
                         { count != 0 && count }
                     </NavLink>
-                    <div>
-                        <ShoppingCartIcon className= {count == 0 ? 'h-4 w-4 text-white-500' :'hidden'} />
+                    <div >
+                        <ShoppingCartIcon
+                            className= {count == 0 ? 'h-4 w-4 text-white-500' :'hidden'}
+                        />
                     </div>
                 </li>
 

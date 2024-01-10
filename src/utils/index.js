@@ -7,7 +7,7 @@
 function totalPrice (products) {
     let sum = 0;
     products.forEach(item => sum += (item.quantity * item.price));
-    return sum
+    return sum.toFixed(2)
 }
 
 function totalProducts (products) {

@@ -10,15 +10,15 @@ const ProductDetail = () => {
     return (
         <aside className='bg-white backdrop-blur border-white-64 shadow-2xl product-detail flex flex-col right-0 fixed'>
             <div className='p-8 flex justify-between items-center'>
-                <h2 className='font-mediun text-xl'>Detail</h2>
+                <h2 className='font-mediun text-xl select-none'>Detail</h2>
                 <XMarkIcon
                     onClick={() => setisDetailOpen(false)}
                     className="h-6 w-6 text-black-500 cursor-pointer"
                 />
             </div>
-            <figure className='relative flex flex-col w-full h-full justify-start items-center'>
+            <figure className='relative select-none flex flex-col w-full h-full justify-start items-center'>
                 <img
-                    className='mt-16 w-48 h-48 object-contain'
+                    className='mt-16 w-48 h-48 object-contain select-none'
                     src={productToShow[0].image} alt={productToShow[0].title}
                 />
                 <h3 className='mt-12 px-12 text-center font-bold text-xl max-h-16 overflow-hidden'>

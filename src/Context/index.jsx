@@ -5,7 +5,7 @@ const ShoppingCartContext = createContext();
 function ShoppingCartProvider ({ children }) {
 
     //Estados
-    const [ items , setItems ] = useState(null);
+    const [ items , setItems ] = useState([]);
     const [ isLoading , setisLoading ] = useState(true);
     const [ count, setCount ] = useState(0);
     const [ isDetailOpen , setisDetailOpen] = useState(false);
@@ -13,9 +13,11 @@ function ShoppingCartProvider ({ children }) {
     const [ productsCart, setProductsCart ] = useState([]);
     const [ isCartOpen , setisCartOpen] = useState(false);
     const [ order , setOrder ] = useState([]);
+    const [ searchItem , setSearchItem ] = useState('');
+    const [ searchByCategory , setSearchByCategory ] = useState('');
 
 
-    //Llamado al API de Productos
+    //Llamado al API de Productos - GET
     useEffect( () => {
        fetch('https://fakestoreapi.com/products')
           .then(response => response.json())
@@ -27,11 +29,23 @@ function ShoppingCartProvider ({ children }) {
        }, []
     );
 
+    //Estado derivado Products
+    const filteredItems = items?.filter(item => {
+        const itemTitle = item.title.toLowerCase();
+        const searchTitle = searchItem.toLowerCase();
+        return itemTitle.includes(searchTitle)
+     })
+
+     const filteredByCategory = searchByCategory != "" ? filteredItems?.filter(item => {
+        return item.category === searchByCategory
+     }) : filteredItems;
+
+
     //Shopping Cart
 
     function handleAddClick (id) {
         setisDetailOpen(false);
-        setisCartOpen(true);
+        // setisCartOpen(true);
 
         const newNumber = count + 1;
         setCount(newNumber);
@@ -99,7 +113,13 @@ function ShoppingCartProvider ({ children }) {
             setisCartOpen,
             deleteFromCart,
             order,
-            setOrder
+            setOrder,
+            searchItem,
+            setSearchItem,
+            filteredItems,
+            filteredByCategory,
+            searchByCategory,
+            setSearchByCategory
         }}>
             { children }
         </ShoppingCartContext.Provider>

@@ -9,7 +9,7 @@ const Card = ( { id, img, title, price, category }) => {
 
 
     return (
-        <div className='bg-white/60 backdrop-blur border-white-30 shadow-md cursor-pointer w-56 h-72 flex flex-col justify-center rounded-xl'>
+        <div className='bg-white/60 backdrop-blur border-white-30 shadow-md cursor-pointer w-56 h-72 flex flex-col justify-center rounded-xl select-none'>
             <figure className='relative shrink-0 overflow-hidden h-4/5 mb-4  w-full rounded-3xl'>
                 <span className='absolute bottom-3 left-3 bg-white/60 backdrop-blur border-white-30 shadow-md px-2 py-1 rounded-xl text-sm font-bold capitalize'>{category}</span>
 
